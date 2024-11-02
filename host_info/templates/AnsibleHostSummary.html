@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ansible Host Summary</title>
+</head>
+<body>
+<h1>Ansible Host Summary</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Hostname</th>
+            <th>OS Version</th>
+            <th>Python3 version</th>
+            <th>Status Notes</th>
+            <th>Virtual Disk Size (MB)</th>
+            <th>Special Notes</th>
+            <th>Running</th>
+            <th>Cyteen CPU Allocation</th>
+            <th>Cyteen RAM Allocation</th>
+            <th>R720 CPU Allocation</th>
+            <th>R720 RAM Allocation</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for host in host_summary %}
+        <tr>
+            <td>{{ host.hostname }}</td>
+            <td>{{ host.os_version }}</td>
+            <td>{{ host.python3_version }}</td>
+            <td>{{ host.status_notes }}</td>
+            <td>{{ host.virtual_disk_size_mb }}</td>
+            <td>{{ host.special_notes }}</td>
+            <td>{{ host.running }}</td>
+            <td>{{ host.cyteen_vm_cpu_allocation }}</td>
+            <td>{{ host.cyteen_vm_ram_allocation }}</td>
+            <td>{{ host.r720_vm_cpu_allocation }}</td>
+            <td>{{ host.r720_vm_ram_allocation }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
