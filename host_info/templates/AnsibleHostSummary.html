@@ -9,6 +9,7 @@ Ansible Host Summary
 <table border="1">
     <thead>
         <tr>
+            <th>ID</th>
             <th>Hostname</th>
             <th>OS Version</th>
             <th>Python3 version</th>
@@ -18,24 +19,33 @@ Ansible Host Summary
             <th>Running</th>
             <th>Cyteen CPU Allocation</th>
             <th>Cyteen RAM Allocation</th>
+            <th>Cyteen CPU Use</th>
+            <th>Cyteen RAM Use</th>
             <th>R720 CPU Allocation</th>
             <th>R720 RAM Allocation</th>
+            <th>R720 CPU Use</th>
+            <th>R720 RAM Use</th>
         </tr>
     </thead>
     <tbody>
     {% for host in host_summary %}
         <tr>
+            <td>{{ host.id }}</td>
             <td>{{ host.hostname }}</td>
-            <td>{{ host.os_version }}</td>
-            <td>{{ host.python3_version }}</td>
-            <td>{{ host.status_notes }}</td>
-            <td>{{ host.virtual_disk_size_mb }}</td>
-            <td>{{ host.special_notes }}</td>
-            <td>{{ host.running }}</td>
-            <td>{{ host.cyteen_vm_cpu_allocation }}</td>
-            <td>{{ host.cyteen_vm_ram_allocation }}</td>
-            <td>{{ host.r720_vm_cpu_allocation }}</td>
-            <td>{{ host.r720_vm_ram_allocation }}</td>
+            <td>{{ host.os_version|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.python3_version|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.status_notes|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.virtual_disk_size_mb|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.special_notes|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.running|default_if_none:"False" }}</td>
+            <td>{{ host.cyteen_vm_cpu_allocation|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.cyteen_vm_ram_allocation|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.cyteen_vm_cpu_use|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.cyteen_vm_ram_use|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.r720_vm_cpu_allocation|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.r720_vm_ram_allocation|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.r720_vm_cpu_use|default_if_none:"&nbsp;" }}</td>
+            <td>{{ host.r720_vm_ram_use|default_if_none:"&nbsp;" }}</td>
         </tr>
     {% endfor %}
     </tbody>
