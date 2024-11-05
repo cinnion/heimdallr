@@ -6,7 +6,7 @@ Ansible Host Summary
 
 {% block body %}
 <h1>Ansible Host Summary</h1>
-<table border="1">
+<table id="ansible-host-summary" border="1">
     <thead>
         <tr>
             <th>ID</th>
@@ -50,5 +50,14 @@ Ansible Host Summary
     {% endfor %}
     </tbody>
 </table>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#ansible-host-summary').DataTable();
+});
 
+</script>
+
+{% endblock %}
+
+{% block js %}
 {% endblock %}
