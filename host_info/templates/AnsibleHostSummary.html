@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Ansible Host Summary</title>
-</head>
-<body>
+{% extends "master.html" %}
+
+{% block title %}
+Ansible Host Summary
+{% endblock %}
+
+{% block body %}
 <h1>Ansible Host Summary</h1>
 <table border="1">
     <thead>
@@ -40,5 +40,5 @@
     {% endfor %}
     </tbody>
 </table>
-</body>
-</html>
+
+{% endblock %}
