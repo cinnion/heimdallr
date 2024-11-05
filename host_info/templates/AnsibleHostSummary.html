@@ -48,6 +48,26 @@ Ansible Host Summary
             <td>{{ host.r720_vm_ram_use|default_if_none:"&nbsp;" }}</td>
         </tr>
     {% endfor %}
+    <tfoot>
+            <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ totals.cyteen_vm_cpu_total|default_if_none:"&nbsp;" }}</td>
+            <td>{{ totals.cyteen_vm_ram_total|default_if_none:"&nbsp;" }}</td>
+            <td></td>
+            <td></td>
+            <td>{{ totals.r720_vm_cpu_total|default_if_none:"&nbsp;" }}</td>
+            <td>{{ totals.r720_vm_ram_total|default_if_none:"&nbsp;" }}</td>
+        </tr>
+    </tfoot>
     </tbody>
 </table>
 <script type="text/javascript">

@@ -16,6 +16,7 @@ class AnsibleHostSummary(models.Model):
     class Meta:
         db_table = 'ansible_host_summary'
 
+    @property
     def cyteen_vm_cpu_use(self):
         if self.running and self.cyteen_vm_cpu_allocation:
             usage = self.cyteen_vm_cpu_allocation
@@ -24,6 +25,7 @@ class AnsibleHostSummary(models.Model):
 
         return usage
 
+    @property
     def cyteen_vm_ram_use(self):
         if self.running and self.cyteen_vm_ram_allocation:
             usage = self.cyteen_vm_ram_allocation
@@ -32,6 +34,7 @@ class AnsibleHostSummary(models.Model):
 
         return usage
 
+    @property
     def r720_vm_cpu_use(self):
         if self.running and self.r720_vm_cpu_allocation:
             usage = self.r720_vm_cpu_allocation
@@ -40,6 +43,7 @@ class AnsibleHostSummary(models.Model):
 
         return usage
 
+    @property
     def r720_vm_ram_use(self):
         if self.running and self.r720_vm_ram_allocation:
             usage = self.r720_vm_ram_allocation
