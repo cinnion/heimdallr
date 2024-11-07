@@ -2,16 +2,16 @@ from django.db import models
 
 class AnsibleHostSummary(models.Model):
     hostname = models.CharField(max_length=32, unique=True)
-    os_version = models.CharField(max_length=32, null=True)
-    python3_version = models.CharField(max_length=32, null=True)
-    status_notes = models.CharField(max_length=256, null=True)
-    virtual_disk_size_mb = models.IntegerField(null=True)
-    special_notes = models.CharField(max_length=64, null=True)
-    running = models.BooleanField(default=False, null=True)
-    cyteen_vm_cpu_allocation = models.IntegerField(null=True)
-    cyteen_vm_ram_allocation = models.IntegerField(null=True)
-    r720_vm_cpu_allocation = models.IntegerField(null=True)
-    r720_vm_ram_allocation = models.IntegerField(null=True)
+    os_version = models.CharField(max_length=32, blank=True, null=True)
+    python3_version = models.CharField(max_length=32, blank=True, null=True)
+    status_notes = models.CharField(max_length=256, blank=True, null=True)
+    virtual_disk_size_mb = models.IntegerField(blank=True, null=True)
+    special_notes = models.CharField(max_length=64, blank=True, null=True)
+    running = models.BooleanField(default=False, blank=True, null=True)
+    cyteen_vm_cpu_allocation = models.IntegerField(blank=True, null=True)
+    cyteen_vm_ram_allocation = models.IntegerField(blank=True, null=True)
+    r720_vm_cpu_allocation = models.IntegerField(blank=True, null=True)
+    r720_vm_ram_allocation = models.IntegerField(blank=True, null=True)
 
     class Meta:
         db_table = 'ansible_host_summary'
