@@ -1,0 +1,47 @@
+{% extends "master.html" %}
+
+{% block title %}
+Ansible Host Summary
+{% endblock %}
+
+{% block body %}
+<h1>Ansible Host Detail</h1>
+<form id="rendered-form">
+    <input type="hidden" name="id" id="id" value="{{ host.id }}">
+
+    <label for="hostname">Hostname</label>
+    <input type="text" placeholder="Hostname" name="hostname" maxlength="32" id="hostname" required="required" aria-required="true" value="{{ host.hostname }}">
+
+    <label for="os_version">OS Version</label>
+    <input type="text" placeholder="OS version" name="os_version" maxlength="32" id="os_version" value="{{ host.os_version }}">
+
+    <label for="python3_version">Python3 Version</label>
+    <input type="text" placeholder="python3 version" name="python3_version" maxlength="32" id="python3_version" value="{{ host.python3_version }}">
+
+    <label for="status_notes">Status Notes</label>
+    <input type="text" placeholder="Status Notes" name="status_notes" maxlength="256" id="status_notes" value="{{ host.status_notes }}">
+
+    <label for="virtual_disk_size_mb">Virtual Disk Size (MB)</label>
+    <input type="text" placeholder="Virtual Disk Size (MB)" name="virtual_disk_size_mb" maxlength="32" id="virtual_disk_size_mb" value="{{ host.virtual_disk_size_mb }}">
+
+    <label for="special_notes">Special Notes</label>
+    <input type="text" placeholder="Special Notes" name="special_notes" maxlength="256" id="special_notes" value="{{ host.special_notes }}">
+
+    <label for="running">Special Notes</label>
+    <input type="text" placeholder="Running?" name="running" maxlength="256" id="running" value="{{ host.running }}">
+
+    <label for="cyteen_vm_cpu_allocation">Cyteen VM CPU Allocation</label>
+    <input type="text" placeholder="Cyteen VM CPU Allocation" name="cyteen_vm_cpu_allocation" maxlength="256" id="cyteen_vm_cpu_allocation" value="{{ host.cyteen_vm_cpu_allocation }}">
+
+    <label for="cyteen_vm_ram_allocation">Cyteen VM RAM Allocation</label>
+    <input type="text" placeholder="Cyteen VM RAM Allocation" name="cyteen_vm_ram_allocation" maxlength="256" id="cyteen_vm_ram_allocation" value="{{ host.cyteen_vm_ram_allocation }}">
+
+    <label for="r720_vm_cpu_allocation">R720 VM CPU Allocation</label>
+    <input type="text" placeholder="R720 VM CPU Allocation" name="r720_vm_cpu_allocation" maxlength="256" id="r720_vm_cpu_allocation" value="{{ host.r720_vm_cpu_allocation }}">
+
+    <label for="r720_vm_ram_allocation">R720 VM RAM Allocation</label>
+    <input type="text" placeholder="R720 VM RAM Allocation" name="r720_vm_ram_allocation" maxlength="256" id="r720_vm_ram_allocation" value="{{ host.r720_vm_ram_allocation }}">
+
+</form>
+
+{% endblock %}

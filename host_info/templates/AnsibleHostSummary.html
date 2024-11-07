@@ -25,6 +25,7 @@ Ansible Host Summary
             <th>R720 RAM Allocation</th>
             <th>R720 CPU Use</th>
             <th>R720 RAM Use</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +47,9 @@ Ansible Host Summary
             <td>{{ host.r720_vm_ram_allocation|default_if_none:"&nbsp;" }}</td>
             <td>{{ host.r720_vm_cpu_use|default_if_none:"&nbsp;" }}</td>
             <td>{{ host.r720_vm_ram_use|default_if_none:"&nbsp;" }}</td>
+            <td>
+                <a href="{% url 'host_info:host-details' hostid=host.id %}"><button>Edit</button></a>
+            </td>
         </tr>
     {% endfor %}
     <tfoot>

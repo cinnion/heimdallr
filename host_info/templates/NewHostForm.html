@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block title %}
+Ansible Host Summary
+{% endblock %}
+
+{% block body %}
+    <h1>Ansible Host Detail</h1>
+
+    <form class="form-with-validation" action="{% url 'host_info:new-host' %}" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button class="form-submit">Add Host</button>
+
+    </form>
+{% endblock %}
