@@ -1,18 +1,31 @@
 {% extends "master.html" %}
 
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
 {% block title %}
-Ansible Host Summary
+Ansible New Host Summary
 {% endblock %}
 
 {% block body %}
-    <h1>Ansible Host Detail</h1>
+    <h1>Ansible New Host Detail</h1>
 
     <form class="form-with-validation" action="{% url 'host_info:new-host' %}" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
 
-    {{ form.as_p }}
+        {{ form.hostname | as_crispy_field }}
+        {{ form.os_version | as_crispy_field }}
+        {{ form.python3_version | as_crispy_field }}
+        {{ form.status_notes | as_crispy_field }}
+        {{ form.virtual_disk_size_mb | as_crispy_field }}
+        {{ form.special_notes | as_crispy_field }}
+        {{ form.running | as_crispy_field }}
+        {{ form.cyteen_vm_cpu_allocation | as_crispy_field }}
+        {{ form.cyteen_vm_ram_allocation | as_crispy_field }}
+        {{ form.r720_vm_cpu_allocation | as_crispy_field }}
+        {{ form.r720_vm_ram_allocation | as_crispy_field }}
 
-    <button class="form-submit">Add Host</button>
+        <button class="form-submit">Add Host</button>
 
     </form>
 {% endblock %}

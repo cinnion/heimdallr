@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from host_info.models import AnsibleHostSummary
 from . import forms
@@ -32,12 +32,20 @@ def ansible_host_summary(request):
 
     return render(request, 'AnsibleHostSummary.html', context)
 
-def host_details(request, hostid):
+def host_details(request, hostid=None):
 
-    form = forms.EditHost
-    host = AnsibleHostSummary.objects.get(pk=hostid)
+    if hostid:
+        host = get_object_or_404(AnsibleHostSummary, pk=hostid)
+    else:
+        host = AnsibleHostSummary()
 
-    return render(request, 'HostDetailsForm.html', {"host": host, 'form': form})
+    form = forms.EditHost(request.POST or None, instance=host)
+
+    if request.method == 'POST'and form.is_valid():
+        form.save()
+        return redirect('host_info:host-summary')
+
+    return render(request, 'HostDetailsForm.html', {'form': form})
 
 def host_new(request):
     if request.method == 'POST':
