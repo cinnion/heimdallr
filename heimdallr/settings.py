@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_bootstrap5',
     'crispy_forms',
+    'netfields',
     'host_info',
 ]
 
