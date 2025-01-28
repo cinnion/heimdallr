@@ -83,6 +83,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'heimdallr.wsgi.application'
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/var/tmp/heimdallr.cache"
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

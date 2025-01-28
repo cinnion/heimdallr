@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Index
 from netfields import CidrAddressField
+from django.core.cache import caches
 
 class filterlog(models.Model):
     timestamp = models.DateTimeField()
@@ -51,3 +52,15 @@ class blacklist(models.Model):
 
     class Meta:
         db_table = 'blacklist'
+
+class heavyHitters(models.Model):
+    cnt = models.IntegerField()
+    tmstamp = models.DateTimeField()
+    cidrBlock = CidrAddressField()
+    bh_id = models.BigIntegerField()
+    blackhole = CidrAddressField()
+
+    class Meta:
+        managed = False
+
+
