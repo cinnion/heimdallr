@@ -53,7 +53,7 @@ class blacklist(models.Model):
     class Meta:
         db_table = 'blacklist'
 
-class heavyHitters(models.Model):
+class heavyHitter(models.Model):
     cnt = models.IntegerField()
     tmstamp = models.DateTimeField()
     cidrBlock = CidrAddressField()

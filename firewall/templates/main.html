@@ -1,0 +1,17 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block title %}
+Application Summary
+{% endblock %}
+
+{% block subnav %}
+    <nav>
+        <a href="{% url 'firewall:blackholes' %}">Blackhole List</a> |
+        <a href="{% url 'firewall:heavy-hitters-list' %}">Heavy Hitters</a>
+    </nav>
+{% endblock %}
+
+{% block additional_scripts %}
+    <script src="{% static '/js/heavyhitters.js' %}"></script>
+{% endblock %}
