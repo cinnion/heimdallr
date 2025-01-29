@@ -57,6 +57,9 @@ class heavyHitters(models.Model):
     cnt = models.IntegerField()
     tmstamp = models.DateTimeField()
     cidrBlock = CidrAddressField()
+    rule_num = models.IntegerField()
+    blocked = models.IntegerField()
+    blocked_ports = models.IntegerField()
     bh_id = models.BigIntegerField()
     blackhole = CidrAddressField()
 
