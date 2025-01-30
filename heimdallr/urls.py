@@ -21,6 +21,7 @@ from . import views
 urlpatterns = [
     path('', views.homepage, name="homepage"),
     path('admin/', admin.site.urls),
+    path('api/firewall/', include('firewall.api_urls')),
     path('firewall/', include('firewall.urls', namespace='firewall')),
     path('host_info/', include('host_info.urls', namespace='host_info')),
 ]

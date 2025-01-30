@@ -2,9 +2,15 @@
 {% load static %}
 
 {% block title %}
-Heavy Hitter Summary
+Black Hole Summary
 {% endblock %}
 
 {% block content %}
-This is where the blackhole list will be...
+    <h1>Black Hole Summary</h1>
+    <table id="blackholes" border="1">
+    </table>
+{% endblock %}
+
+{% block additional_scripts %}
+    <script src="{% static '/js/blackholes.js' %}"></script>
 {% endblock %}

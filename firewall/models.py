@@ -47,7 +47,7 @@ class filterlog(models.Model):
             Index(fields=['dest_ip']),
         ]
 
-class blacklist(models.Model):
+class Blackhole(models.Model):
     blackhole = CidrAddressField()
 
     class Meta:
