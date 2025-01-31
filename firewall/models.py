@@ -53,9 +53,9 @@ class Blackhole(models.Model):
     class Meta:
         db_table = 'blacklist'
 
-class heavyHitter(models.Model):
+class HeavyHitter(models.Model):
     cnt = models.IntegerField()
-    tmstamp = models.DateTimeField()
+    tmstamp = models.DateField()
     cidrBlock = CidrAddressField()
     rule_num = models.IntegerField()
     blocked = models.IntegerField()
@@ -64,6 +64,6 @@ class heavyHitter(models.Model):
     blackhole = CidrAddressField()
 
     class Meta:
+        db_table = 'heavy_hitters'
         managed = False
-
 

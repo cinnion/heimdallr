@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from .models import Blackhole, heavyHitter
+from .models import Blackhole, HeavyHitter
 
 
 class HeavyHittersSerializer(serializers.ModelSerializer):
     class Meta:
-        model = heavyHitter
+        model = HeavyHitter
         fields = "__all__"
 
 class BlackholeSerializer(serializers.ModelSerializer):
