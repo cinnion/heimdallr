@@ -1,30 +1,22 @@
 {
-  "name": "heimdallr",
-  "version": "1.0.0",
-  "description": "A network management app",
-  "main": "index.js",
-  "scripts": {
+    "private": true,
+    "type": "module",
+    "scripts": {
         "build": "vite build",
-        "dev": "vite"
-  },
-  "author": "Doug Needham <douglas.w.needham@gmail.com>",
-  "license": "BSD-3-Clause",
-  "devDependencies": {
-    "bootstrap5": "^1.1.9",
-    "datatables.net": "^2.2.1",
-    "datatables.net-jqui": "^2.2.1",
-    "jquery": "^3.7.1",
-    "jquery-ui": "^1.14.1",
-    "jquery-ui-themeroller": "^0.0.9",
-    "webpack": "^5.97.1",
-    "webpack-bundle-tracker": "^3.1.1",
-    "webpack-cli": "^6.0.1",
-    "autoprefixer": "^10.4.20",
-    "axios": "^1.7.4",
-    "concurrently": "^9.0.1",
-    "laravel-vite-plugin": "^1.2.0",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13",
-    "vite": "^6.0.11"
-  }
+        "dev": "vite --host"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.20",
+        "axios": "^1.7.4",
+        "concurrently": "^9.0.1",
+        "datatables.net": "^2.2.1",
+        "datatables.net-jqui": "^2.2.1",
+        "jquery": "^3.7.1",
+        "jquery-ui": "^1.14.1",
+        "jquery-ui-themeroller": "^0.0.9",
+        "laravel-vite-plugin": "^1.2.0",
+        "postcss": "^8.4.47",
+        "tailwindcss": "^3.4.13",
+        "vite": "^6.0.11"
+    }
 }
