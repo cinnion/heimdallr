@@ -3,9 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Filterlog extends Model
+class Filterlog extends ReadOnlyModel
 {
     /** @use HasFactory<\Database\Factories\FilterlogFactory> */
     use HasFactory;
