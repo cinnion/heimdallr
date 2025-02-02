@@ -7,6 +7,9 @@ export default defineConfig({
         hmr: {
             host: 'wing-1.home.ka8zrt.com',
         },
+        cors: {
+            origin: 'http://wing-1.home.ka8zrt.com:8000',
+        },
     },
     plugins: [
         laravel({
