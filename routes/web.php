@@ -13,6 +13,6 @@ Route::get('/firewall', [\App\Http\Controllers\FirewallController::class, 'index
     ->name('firewall.index');
 Route::get('/firewall/blackholes', [\App\Http\Controllers\FirewallBlackholeController::class, 'index'])
     ->name('firewall.blackholes');
-Route::get('/firewall/heavy-hitters', [\App\Http\Controllers\FirewallHeavyHittersController::class, 'summary'])
+Route::get('/firewall/heavy-hitters', [\App\Http\Controllers\FirewallHeavyHittersController::class, 'index'])
     ->name('firewall.heavy-hitters');
 
