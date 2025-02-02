@@ -7,7 +7,7 @@
 @section('contents')
     <h1>Firewall Blackhole Summary</h1>
 
-    <table id="blackhole-summary" border="1">
+    <table id="blackhole-summary" class="table table-striped table-hover">
 
     </table>
 
@@ -17,7 +17,7 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route("firewall.blackholes") }}'
+                    url: '{{ route("blackholes.index") }}'
                 },
                 'columns': [
                     {
@@ -33,11 +33,11 @@
                         width: '400px',
                     },
                     {
-                        defaultContent: '<a href="#" onclick="var id=this.closest(\'tr\').id; window.location.href=\'/applications/\' + id + \'/edit\';"><button>Edit</button></a>',
-                        name: 'actions',
+                        data: 'action',
+                        name: 'action',
                         title: 'Actions',
                         width: '100px',
-                        placeholder: true,
+                        orderable: false,
                         searchable: false,
                     }
                 ],

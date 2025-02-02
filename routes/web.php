@@ -1,18 +1,26 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\AnsibleHostSummaryController;
+use App\Http\Controllers\FirewallHeavyHittersController;
+use App\Http\Controllers\FirewallBlackholeController;
+use App\Http\Controllers\FirewallController;
 
 Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/ansible-host-summary', [\App\Http\Controllers\AnsibleHostSummaryController::class, 'index'])
-    ->name('ansible-host-summary');
-
-Route::get('/firewall', [\App\Http\Controllers\FirewallController::class, 'index'])
+Route::get('/firewall', [FirewallController::class, 'index'])
     ->name('firewall.index');
-Route::get('/firewall/blackholes', [\App\Http\Controllers\FirewallBlackholeController::class, 'index'])
-    ->name('firewall.blackholes');
-Route::get('/firewall/heavy-hitters', [\App\Http\Controllers\FirewallHeavyHittersController::class, 'index'])
-    ->name('firewall.heavy-hitters');
 
+Route::resources([
+    'ansible-host-summary' => AnsibleHostSummaryController::class,
+    'blackholes' => FirewallBlackholeController::class
+]);
+
+Route::get('blackholes/{cidrBlock}/add', [FirewallBlackholeController::class, 'add'])
+    ->name('blackholes.add');
+Route::get('/firewall/heavy-hitters', [FirewallHeavyHittersController::class, 'index'])
+    ->name('heavyhitters.index');
+Route::get('/firewall/heavyhitters/{cidrBlock}/detail', [FirewallHeavyHittersController::class, 'details'])
+    ->name('heavyhitters.detail');

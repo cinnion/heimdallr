@@ -7,7 +7,7 @@
 @section('contents')
     <h1>Firewall Heavy Hitter Summary</h1>
 
-    <table id="heavy-hitters" border="1">
+    <table id="heavy-hitters" class="table table-striped table-hover">
 
     </table>
 
@@ -17,7 +17,7 @@
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route("firewall.heavy-hitters") }}'
+                    url: '{{ route("heavyhitters.index") }}'
                 },
                 'columns': [
                     {
@@ -30,7 +30,7 @@
                         data: 'tmstamp',
                         name: 'tmstamp',
                         title: 'Date',
-                        width: '150px',
+                        width: '100px',
                     },
                     {
                         data: 'cidrBlock',
@@ -42,7 +42,7 @@
                         data: 'rule_num',
                         name: 'rule_num',
                         title: 'Rule Number',
-                        width: '150px',
+                        width: '100px',
                     },
                     {
                         data: 'blocked',
@@ -68,29 +68,29 @@
                         title: 'Blackhole CIDR',
                     },
                     {
-                        defaultContent: '<a href="#" onclick="var id=this.closest(\'tr\').id; window.location.href=\'/applications/\' + id + \'/edit\';"><button>Edit</button></a>',
-                        name: 'edit',
+                        data: 'action',
+                        name: 'action',
                         title: 'Actions',
-                        width: '100px',
-                        placeholder: true,
+                        width: '200px',
+                        orderable: false,
+                        searchable: false,
                     }
                 ],
                 'order': [
                     [0, 'desc'],
                 ],
                 layout: {
-                    top1End: function () {
-                        let toolbar = document.createElement('div');
-                        toolbar.innerHTML = '<a href="/firewall/new-blackhole/"><button id="add">Add</button></a>';
-
-                        return toolbar;
-                    },
                     topStart: 'pageLength',
                     topEnd: 'search',
                     bottomStart: 'info',
                     bottomEnd: 'paging',
                 }
+            });
+
+            $('table#heavy-hitters').on('click', '.add-blackhole', function() {
+                const cidrBlock = $(this).val();
+                console.log(cidrBlock);
             })
-        })
+        });
     </script>
 @stop

@@ -22,7 +22,7 @@
 </head>
 <body>
     <nav>
-        <a href="{{ @route('ansible-host-summary') }}">Ansible Host Summary</a> |
+        <a href="{{ @route('ansible-host-summary.index') }}">Ansible Host Summary</a> |
         <a href="{{ @route('firewall.index') }}">Firewall</a>
     </nav>
     @yield('sub-nav')

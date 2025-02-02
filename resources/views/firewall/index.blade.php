@@ -6,8 +6,8 @@
 
 @section('sub-nav')
     <nav>
-        <a href="{{ @route('firewall.blackholes') }}">Blackholes</a> |
-        <a href="{{ @route('firewall.heavy-hitters') }}">Heavy Hitters</a>
+        <a href="{{ @route('blackholes.index') }}">Blackholes</a> |
+        <a href="{{ @route('heavyhitters.index') }}">Heavy Hitters</a>
     </nav>
 @stop
 
