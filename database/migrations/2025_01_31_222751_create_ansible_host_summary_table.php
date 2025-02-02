@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('os_version', 32)->nullable();
             $table->string('python3_version', 32)->nullable();
             $table->string('status_notes', 256)->nullable();
-            $table->integer('virtual_disk_size')->nullable();
+            $table->integer('virtual_disk_size_mb')->nullable();
             $table->string('special_notes', 64)->nullable();
             $table->boolean('running')->default(false)->nullable();
             $table->integer('cyteen_vm_cpu_allocation')->nullable();

@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/ansible-host-summary', [\App\Http\Controllers\AnsibleHostSummary::class, 'summary'])
+Route::get('/ansible-host-summary', [\App\Http\Controllers\AnsibleHostSummaryController::class, 'index'])
     ->name('ansible-host-summary');
 
 Route::get('/firewall', [\App\Http\Controllers\FirewallController::class, 'index'])
