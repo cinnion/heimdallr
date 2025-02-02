@@ -1,3 +1,4 @@
 import './bootstrap';
 
-import * as bootstrap from 'bootstrap';
+import * as Bootstrap from 'bootstrap';
+window.bootstrap = Bootstrap;
