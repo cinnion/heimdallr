@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\AnsibleHostSummary;
+use Yajra\DataTables\Facades\DataTables;
 
-class AnsibleHostSummary extends Controller
+class AnsibleHostSummaryController extends Controller
 {
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $ansible_host_summary = \App\Models\AnsibleHostSummary::query();;
+            $ansible_host_summary = AnsibleHostSummary::query();
 
-            dd($ansible_host_summary);
+            return DataTables::eloquent($ansible_host_summary)->make(true);
         } else {
             return view('ansible-host-summary');
         }
