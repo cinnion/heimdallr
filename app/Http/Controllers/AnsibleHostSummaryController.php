@@ -19,6 +19,7 @@ class AnsibleHostSummaryController extends Controller
             return DataTables::eloquent($ansible_host_summary)
                 ->addColumn('action', function ($host) {
                     $retval = '<a href="' . route('ansible-host-summary.show', $host->id) . '" class="btn btn-success btn-sm" target="_blank">Details</a>';
+                    $retval .= '&nbsp;<button value="' . $host->id . '" class="btn btn-danger btn-sm delete-host">Delete</button>';
 
                     return $retval;
                 })
@@ -74,6 +75,11 @@ class AnsibleHostSummaryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $host = AnsibleHostSummary::findOrFail($id);
+        if ($host) {
+            $host->delete();
+            return response()->json(['status' => 'success', 'message' => 'Host deleted successfully']);
+        }
+        return response()->json([ 'status' => 'failed', 'message' => 'Unable to delete host']);
     }
 }

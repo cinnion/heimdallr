@@ -13,7 +13,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#ansible-host-summary').DataTable({
+            const table = $('#ansible-host-summary').DataTable({
                 serverSide: true,
                 processing: true,
                 ajax: {
@@ -103,7 +103,33 @@
                 'order': [
                     [1, 'asc'],
                 ],
-            })
-        })
+            });
+
+            $('#ansible-host-summary').on('click', '.delete-host', function() {
+                const hostId = $(this).val();
+
+                if (hostId) {
+                    if (confirm('Are you sure you want to delete?')) {
+                        $.ajax({
+                            url: `{{ url('ansible-host-summary') }}/${hostId}`,
+                            method: 'DELETE',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                            },
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    table.ajax.reload(null, false);
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(error) {
+                                alert('Something went wrong!');
+                            }
+                        });
+                    }
+                }
+            });
+        });
     </script>
 @stop
