@@ -27,7 +27,7 @@
     </nav>
     @yield('sub-nav')
 
-    <div class="container">
+    <div class="container-flex">
         @yield('contents')
     </div>
 </body>
