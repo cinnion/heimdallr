@@ -84,32 +84,32 @@
                     bottomStart: 'info',
                     bottomEnd: 'paging',
                 },
-                'initComplete': function() {
-                    $('#heavy-hitters thead tr').clone(true).appendTo('#heavy-hitters thead');
-
-                    this.api()
-                        .columns()
-                        .every(function() {
-                            let column = this;
-                            let title = column.header(1).textContent;
-
-                            if (column.orderable()) {
-                                // Create input element
-                                let input = document.createElement('input');
-                                input.placeholder = title;
-                                column.header(1).replaceChildren(input);
-
-                                // Event listener for user input.
-                                input.addEventListener('keyup', () => {
-                                    if (column.search() !== this.value) {
-                                        column.search(input.value).draw();
-                                    }
-                                });
-                            } else {
-                                column.header(1).text('');
-                            }
-                        });
-                }
+                // 'initComplete': function() {
+                //     $('#heavy-hitters thead tr').clone(true).appendTo('#heavy-hitters tfoot');
+                //
+                //     this.api()
+                //         .columns()
+                //         .every(function() {
+                //             let column = this;
+                //             let title = column.footer().textContent;
+                //
+                //             if (column.orderable()) {
+                //                 // Create input element
+                //                 let input = document.createElement('input');
+                //                 input.placeholder = title;
+                //                 column.footer().replaceChildren(input);
+                //
+                //                 // Event listener for user input.
+                //                 input.addEventListener('keyup', () => {
+                //                     if (column.search() !== this.value) {
+                //                         column.search(input.value).draw();
+                //                     }
+                //                 });
+                //             } else {
+                //                 column.footer().text('');
+                //             }
+                //         });
+                // }
             });
 
             $('table#heavy-hitters').on('click', '.add-blackhole', function() {
