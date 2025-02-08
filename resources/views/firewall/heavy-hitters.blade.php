@@ -8,7 +8,6 @@
     <h1>Firewall Heavy Hitter Summary</h1>
 
     <table id="heavy-hitters" class="table table-striped table-hover">
-
     </table>
 
     <script type="text/javascript">
@@ -79,11 +78,37 @@
                 'order': [
                     [0, 'desc'],
                 ],
-                layout: {
+                'layout': {
                     topStart: 'pageLength',
                     topEnd: 'search',
                     bottomStart: 'info',
                     bottomEnd: 'paging',
+                },
+                'initComplete': function() {
+                    $('#heavy-hitters thead tr').clone(true).appendTo('#heavy-hitters thead');
+
+                    this.api()
+                        .columns()
+                        .every(function() {
+                            let column = this;
+                            let title = column.header(1).textContent;
+
+                            if (column.orderable()) {
+                                // Create input element
+                                let input = document.createElement('input');
+                                input.placeholder = title;
+                                column.header(1).replaceChildren(input);
+
+                                // Event listener for user input.
+                                input.addEventListener('keyup', () => {
+                                    if (column.search() !== this.value) {
+                                        column.search(input.value).draw();
+                                    }
+                                });
+                            } else {
+                                column.header(1).text('');
+                            }
+                        });
                 }
             });
 
