@@ -12,11 +12,15 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#heavy-hitters').DataTable({
+            const datatable = $('#heavy-hitters').DataTable({
                 serverSide: true,
                 processing: true,
                 ajax: {
-                    url: '{{ route("heavyhitters.index") }}'
+                    url: '{{ route("heavyhitters.index") }}',
+                    data: function(payload) {
+                        const includeBlackholed = $('#withBlackholed').is(':checked');
+                        payload.includeBlackholed = includeBlackholed;
+                    },
                 },
                 'columns': [
                     {
@@ -79,37 +83,44 @@
                     [0, 'desc'],
                 ],
                 'layout': {
+                    top2end: function() {
+                        let withBlackholed = document.createElement("div");
+                        withBlackholed.innerHTML = '<input type="checkbox" id="withBlackholed" name="withBlackholed" value="Yes">&nbsp;With Blackholed Hitters ';
+
+                        return withBlackholed;
+                    },
                     topStart: 'pageLength',
                     topEnd: 'search',
                     bottomStart: 'info',
                     bottomEnd: 'paging',
                 },
-                // 'initComplete': function() {
-                //     $('#heavy-hitters thead tr').clone(true).appendTo('#heavy-hitters tfoot');
-                //
-                //     this.api()
-                //         .columns()
-                //         .every(function() {
-                //             let column = this;
-                //             let title = column.footer().textContent;
-                //
-                //             if (column.orderable()) {
-                //                 // Create input element
-                //                 let input = document.createElement('input');
-                //                 input.placeholder = title;
-                //                 column.footer().replaceChildren(input);
-                //
-                //                 // Event listener for user input.
-                //                 input.addEventListener('keyup', () => {
-                //                     if (column.search() !== this.value) {
-                //                         column.search(input.value).draw();
-                //                     }
-                //                 });
-                //             } else {
-                //                 column.footer().text('');
-                //             }
-                //         });
-                // }
+                'initComplete': function() {
+                    const inputSearchRow = $('#heavy-hitters thead tr').clone(true).appendTo('#heavy-hitters thead');
+
+                    inputSearchRow.find('th').each(function(index) {
+                        if (index === 0 || index === inputSearchRow.find('th').length -1) {
+                            $(this).html('');
+                        } else {
+                            $(this).html('<input type="text" class="form-control search-input" placeholder="Search..." />');
+                        }
+
+                    });
+
+                    $('#heavy-hitters thead tr:nth-child(2) th').click(function(event) {
+                        event.stopPropagation();
+                    });
+
+                    $('.search-input').on('keyup change', function() {
+                        const columnIndex = $(this).parent().index();
+                        const searchedTerms = $(this).val().trim();
+
+                        datatable.column(columnIndex).search(searchedTerms).draw();
+                    });
+
+                    $('#withBlackholed').on('change', function() {
+                        datatable.draw();
+                    })
+                }
             });
 
             $('table#heavy-hitters').on('click', '.add-blackhole', function() {

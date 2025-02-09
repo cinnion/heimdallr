@@ -21,6 +21,11 @@ class FirewallHeavyHittersController extends Controller
         if ($request->ajax()) {
             $heavy_hitters = HeavyHitter::query();
 
+            $includeBlackholed = $request->includeBlackholed ?? 'false';
+            if ($includeBlackholed == 'false') {
+                $heavy_hitters->whereNull('bh_id');
+            }
+
             return DataTables::eloquent($heavy_hitters)
                 ->addColumn('tmstamp', function($hitter) {
                     return Carbon::parse($hitter->tmstamp)->format('Y-m-d');
