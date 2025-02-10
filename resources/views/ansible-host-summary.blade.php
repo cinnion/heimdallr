@@ -1,10 +1,10 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title')
     Host Summary
 @stop
 
-@section('contents')
+@section('content')
     <h1>Ansible Host Summary</h1>
 
     <table id="ansible-host-summary" class="table table-striped table-hover">
@@ -16,6 +16,7 @@
             const table = $('#ansible-host-summary').DataTable({
                 serverSide: true,
                 processing: true,
+                scrollX: true,
                 ajax: {
                     url: '{{ route("ansible-host-summary.index") }}'
                 },
@@ -104,6 +105,8 @@
                     [1, 'asc'],
                 ],
             });
+
+
 
             $('#ansible-host-summary').on('click', '.delete-host', function() {
                 const hostId = $(this).val();

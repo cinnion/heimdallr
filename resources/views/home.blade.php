@@ -4,6 +4,6 @@
     Home
 @stop
 
-@section('contents')
+@section('content')
 This is some content.
 @stop

@@ -4,7 +4,7 @@
     Firewall: Heavy Hitters
 @stop
 
-@section('contents')
+@section('content')
     <h1>Firewall Heavy Hitter Summary</h1>
 
     <table id="heavy-hitters" class="table table-striped table-hover">

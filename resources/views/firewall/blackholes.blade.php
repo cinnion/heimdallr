@@ -4,7 +4,7 @@
     Firewall: Blackholes
 @stop
 
-@section('contents')
+@section('content')
     <h1>Firewall Blackhole Summary</h1>
 
     <table id="blackhole-summary" class="table table-striped table-hover">

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title')
     Firewall
@@ -11,6 +11,6 @@
     </nav>
 @stop
 
-@section('contents')
+@section('content')
     <h1>Firewall Summary</h1>
 @stop
