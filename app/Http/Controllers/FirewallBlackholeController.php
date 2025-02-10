@@ -43,7 +43,17 @@ class FirewallBlackholeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cidrBlock = $request->post('blackhole');
+        $cidrBlock = str_replace('-', '/', $cidrBlock);
+
+        $rec = new Blacklist(['blackhole' => $cidrBlock]);
+        try {
+            $rec->save();
+            return response()->json(['status' => 'success', 'message' => 'Blackhole added successfully']);
+        } catch (Exception $e) {
+            return response()->json([ 'status' => 'failed', 'message' => 'Unable to add blackhole ' . $cidrBlock]);
+
+        }
     }
 
     /**

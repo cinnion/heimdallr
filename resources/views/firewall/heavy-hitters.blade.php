@@ -126,6 +126,29 @@
             $('table#heavy-hitters').on('click', '.add-blackhole', function() {
                 const cidrBlock = $(this).val();
                 console.log(cidrBlock);
+
+                if (cidrBlock) {
+                    if (confirm('Are you sure you want to block ' + cidrBlock + ' ?')) {
+                        $.ajax({
+                            url: `{{ route('blackholes.store') }}`,
+                            method: 'POST',
+                            data: {
+                                _token: '{{ csrf_token() }}',
+                                blackhole: cidrBlock,
+                            },
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    datatable.ajax.reload(null, false);
+                                } else {
+                                    alert(response.message);
+                                }
+                            },
+                            error: function(error) {
+                                alert('Something went wrong!');
+                            }
+                        });
+                    }
+                }
             })
         });
     </script>

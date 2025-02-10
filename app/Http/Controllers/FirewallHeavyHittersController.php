@@ -36,7 +36,7 @@ class FirewallHeavyHittersController extends Controller
                     $retval = '<a href="' . route('heavyhitters.detail', $cidrStr) . '" class="btn btn-success btn-sm" target="_blank">Details</a>';
 
                     if (empty($hitter->blackhole)) {
-                        $retval .= '&nbsp;<button value="' . route('blackholes.add', $cidrStr) . '" class="btn btn-danger btn-sm add-blackhole" target="_blank">Add Blackhole</a>';
+                        $retval .= '&nbsp;<button value="' . $cidrStr .  '" class="btn btn-danger btn-sm add-blackhole" target="_blank">Add Blackhole</a>';
                     }
                     return $retval;
                 })
