@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AnsibleHostSummary;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
 class AnsibleHostSummaryController extends Controller
@@ -79,6 +80,8 @@ class AnsibleHostSummaryController extends Controller
      */
     public function destroy(string $id)
     {
+        Gate::authorize('admin');
+
         $host = AnsibleHostSummary::findOrFail($id);
         if ($host) {
             $host->delete();

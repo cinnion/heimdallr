@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blacklist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
 class FirewallBlackholeController extends Controller
@@ -43,6 +44,8 @@ class FirewallBlackholeController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('admin');
+
         $cidrBlock = $request->post('blackhole');
         $cidrBlock = str_replace('-', '/', $cidrBlock);
 
@@ -87,14 +90,4 @@ class FirewallBlackholeController extends Controller
     {
         //
     }
-
-    /**
-     * Add a new blackhole entry given the CIDR block
-     */
-    public function add(Request $request, string $cidrBlock)
-    {
-        $cidrBlock = str_replace('-', '/', $cidrBlock);
-        dd($cidrBlock);
-    }
-
 }

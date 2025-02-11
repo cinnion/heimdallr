@@ -1,4 +1,4 @@
-@extends('firewall.index')
+@extends('layouts.app')
 
 @section('title')
     Firewall: Heavy Hitters
