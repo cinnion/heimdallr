@@ -50,6 +50,6 @@ interface will initially be a command line which will perform the
 task, though those too are ultimately intended to be run through the
 web interface.
 
-NOTE: This project has two commit trees, staring with `main` for the 
-Python/Django version, and `main-php` for a PHP/Laravel implementation. See
+NOTE: This project has two commit trees, staring with `py-main` for the 
+Python/Django version, and `main` for a PHP/Laravel implementation. See
 [this blog entry](https://www.ka8zrt.com/node/46) for the reasoning.
