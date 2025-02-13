@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AnsibleHostSummary;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -21,6 +22,14 @@ class AnsibleHostSummaryController extends Controller
         if ($request->ajax()) {
             $ansible_host_summary = AnsibleHostSummary::query();
 
+            $totals = DB::table('ansible_host_summary')
+                ->select(DB::raw("
+SUM(running::INTEGER*cyteen_vm_cpu_allocation) AS cyteen_vm_cpu_usage,
+SUM(running::INTEGER*cyteen_vm_ram_allocation) AS cyteen_vm_ram_usage,
+SUM(running::INTEGER*r720_vm_cpu_allocation) AS r720_vm_cpu_usage,
+SUM(running::INTEGER*r720_vm_ram_allocation) AS r720_vm_ram_usage
+            "))->first();
+
             return DataTables::eloquent($ansible_host_summary)
                 ->addColumn('action', function ($host) {
                     $retval = '<a href="' . route('ansible-host-summary.show', $host->id) . '" class="btn btn-success btn-sm" target="_blank">Details</a>';
@@ -29,6 +38,10 @@ class AnsibleHostSummaryController extends Controller
                     return $retval;
                 })
                 ->rawColumns(['action'])
+                ->with('cyteen_vm_cpu_usage', $totals->cyteen_vm_cpu_usage)
+                ->with('cyteen_vm_ram_usage', $totals->cyteen_vm_ram_usage)
+                ->with('r720_vm_cpu_usage', $totals->r720_vm_cpu_usage)
+                ->with('r720_vm_ram_usage', $totals->r720_vm_ram_usage)
                 ->make(true);
         } else {
             return view('ansible-host-summary');

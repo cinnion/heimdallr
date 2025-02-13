@@ -8,7 +8,8 @@
     <h1>Ansible Host Summary</h1>
 
     <table id="ansible-host-summary" class="table table-striped table-hover">
-
+        <thead></thead>
+        <tfoot><tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th>TOTAL USAGE:</th><th></th><th></th><th></th><th></th></tr></tfoot>
     </table>
 
     <script type="text/javascript">
@@ -104,6 +105,15 @@
                 'order': [
                     [1, 'asc'],
                 ],
+                'drawCallback': function(settings) {
+                    let api = this.api();
+                    var response = settings.json;
+
+                    api.column(8).footer().innerHTML = response.cyteen_vm_cpu_usage;
+                    api.column(9).footer().innerHTML = response.cyteen_vm_ram_usage;
+                    api.column(10).footer().innerHTML = response.r720_vm_cpu_usage;
+                    api.column(11).footer().innerHTML = response.r720_vm_ram_usage;
+                }
             });
 
 
