@@ -12,7 +12,7 @@ return new class extends Migration
     {
         DB::statement("
 CREATE OR REPLACE VIEW heavy_hitters AS
-SELECT row_number() OVER (order by cnt DESC) as id, cnt, fw.tm::date as tmstamp, fw.net AS \"cidrBlock\", rule_num, blocked, blocked_ports, id as bh_id, blackhole
+SELECT cnt, fw.tm::date as tmstamp, fw.net AS \"cidrBlock\", rule_num, blocked, blocked_ports, id as bh_id, blackhole
 FROM (
     SELECT COUNT(*) as cnt, DATE_TRUNC('day', timestamp) as tm, NETWORK(SET_MASKLEN(source_ip,24)) AS net, MAX(rule_num) as rule_num
     FROM filterlog
