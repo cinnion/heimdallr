@@ -36,4 +36,9 @@ Route::get('/firewall/heavy-hitters', [FirewallHeavyHittersController::class, 'i
 Route::get('/firewall/heavyhitters/{cidrBlock}/detail', [FirewallHeavyHittersController::class, 'details'])
     ->name('heavyhitters.detail');
 
+Route::get('/phpipam/' , [\App\Http\Controllers\PhpIPAM::class, 'index'])
+    ->name('phpipam.index');
+Route::get('/phpipam/load', [\App\Http\Controllers\PhpIPAM::class, 'load'])
+    ->name('phpipam.load');
+
 require __DIR__.'/auth.php';
