@@ -76,6 +76,9 @@ pipeline {
                     sh '''
                         scp -p heimdallr-docker.yml root@docker:~/docker-compose/heimdallr.yml
                         ssh root@docker 'docker stack deploy --detach -c ~/docker-compose/heimdallr.yml heimdallr'
+
+                        scp -p heimdallr-beta.yml root@beta:~/docker-compose/heimdallr.yml
+                        ssh root@beta 'docker stack deploy --detach -c ~/docker-compose/heimdallr.yml heimdallr'
                     '''
                 }
             }
