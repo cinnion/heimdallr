@@ -46,3 +46,8 @@ README.md
 tests/
 phpunit.xml
 phpunit.xml.dist
+
+Jenkinsfile
+heimdallr-beta.yml
+heimdallr-docker.yml
+

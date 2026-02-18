@@ -17,6 +17,9 @@ COPY . /var/www
 # Install Node.js dependencies and build assets
 RUN npm install && npm run build
 
+# Remove vite.config.js
+RUN rm vite.config.js
+
 # Stage 2: Nginx production image
 FROM nginx:alpine
 
