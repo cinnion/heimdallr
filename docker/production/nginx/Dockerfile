@@ -25,7 +25,8 @@ FROM nginx:alpine
 # Replace the default Nginx configuration with our custom one
 # that is optimized for serving a Laravel application.
 # -----------------------------------------------------------
-COPY ./docker/production/nginx/nginx.conf /etc/nginx/nginx.conf
+RUN ls -la /etc/nginx/conf.d/
+COPY ./docker/production/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copy Laravel's public assets from the builder stage
 # -----------------------------------------------------------
