@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AnsibleHostSummaryController;
 use App\Http\Controllers\FirewallHeavyHittersController;
 use App\Http\Controllers\FirewallBlackholeController;
@@ -9,7 +10,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
+Route::get('/about', [AboutController::class, 'index'])
+    ->name('about');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

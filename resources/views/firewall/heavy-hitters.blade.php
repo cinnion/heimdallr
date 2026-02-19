@@ -7,6 +7,11 @@
 @section('content')
     <h1>Firewall Heavy Hitter Summary</h1>
 
+    <div class="alert alert-info">
+        <strong>Note</strong>: This page is doing complex queries involving tens of millions of
+        records, so they may take a few seconds to complete loading.
+    </div>
+
     <table id="heavy-hitters" class="table table-striped table-hover">
     </table>
 

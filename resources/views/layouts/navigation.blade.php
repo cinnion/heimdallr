@@ -9,6 +9,9 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ @route('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ @route('ansible-host-summary.index') }}">Ansible Host Summary</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -21,6 +24,9 @@
                         <a class="dropdown-item" href="{{ @route('blackholes.index') }}">{{ __('Blackholes') }}</a>
                         <a class="dropdown-item" href="{{ @route('heavyhitters.index') }}">{{ __('Heavy Hitters') }}</a>
                     </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ @route('about') }}">About</a>
                 </li>
             </ul>
 
