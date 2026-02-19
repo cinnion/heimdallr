@@ -37,8 +37,6 @@ COPY ./docker/production/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 # -----------------------------------------------------------
 COPY --from=builder /var/www/public /var/www/public
 
-RUN apk update && apk add --no-cache wireshark
-
 # Set the working directory to the public folder
 WORKDIR /var/www/public
 
