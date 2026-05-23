@@ -1,28 +1,32 @@
+### Uncategorized...being categorized or going away!!! ###
 /.phpunit.cache
-/docker/.env*
-/node_modules
-/public/build
 /public/hot
-/public/storage
-/storage/*.key
-/storage/pail
-/vendor
-.env
-.env.backup
-.env.production
-.env.python
 .phpactor.json
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
-npm-debug.log
-yarn-error.log
 /auth.json
 /.fleet
-/.idea
 /.nova
 /.vscode
 /.zed
+
+### Files containing secrets ###
+.env*
+docker/.env*
+
+### Log files and error files which accumulate during development ###
+/errs*
+/*.log
+
+### Build products ###
+/.build_env
+/build_info.json
+/heimdallr-beta.yml
+/heimdallr-docker.yml
+/node_modules
+/vendor
+/public/build
 
 ### PhpStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
