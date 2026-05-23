@@ -7,6 +7,17 @@ pipeline {
         DOCKER_NODE = "docker"
     }
     stages {
+        stage('Generate manual build .build_env') {
+            steps {
+                script {
+                    // Write our environment into .build_env
+                    sh 'echo export BUILD_DATE_TIME=\\"${BUILD_DATE_TIME}\\"    >  .build_env'
+                    sh 'echo export REGISTRY=\\"${REGISTRY}\\"                  >> .build_env'
+                    sh 'echo export TAG=\\"${TAG}\\"                            >> .build_env'
+                    sh 'echo export DOCKER_NODE=\\"${DOCKER_NODE}\\"            >> .build_env'
+                }
+            }
+        }
         stage('Generate Build Info JSON') {
             steps {
                 script {
@@ -34,7 +45,7 @@ pipeline {
             steps {
                 script {
                     // Read the docker-compose-prod file
-                    def template = readFile 'docker-compose-prod.yml'
+                    def template = readFile 'docker-compose.yml'
 
                     // Replace the variables for interior production
                     def resolvedContentInternal = template.replaceAll(/\$\{REGISTRY\}/, env.REGISTRY)
@@ -57,7 +68,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'docker compose -f docker-compose-prod.yml -p heimdallr build'
+                sh 'docker compose -f docker-compose.yml -p heimdallr build'
             }
         }
 

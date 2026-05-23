@@ -1,4 +1,6 @@
-# Stage 1: Build environment and Composer dependencies
+###########
+# BUILDER #
+###########
 FROM php:8.2-fpm AS builder
 
 # Install system dependencies and PHP extensions required for Laravel + PostgreSQL support
@@ -59,7 +61,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
     && composer install --no-dev --optimize-autoloader --no-interaction --no-progress --prefer-dist
 
 
-# Stage 2: Production environment
+##############
+# Production #
+##############
 FROM php:8.2-fpm AS production
 
 # Install only runtime libraries needed in production
@@ -103,7 +107,8 @@ COPY --from=builder /usr/local/bin/docker-php-ext-* /usr/local/bin/
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # Enable PHP-FPM status page by modifying zz-docker.conf with sed
-RUN sed -i '/\[www\]/a pm.status_path = /status' /usr/local/etc/php-fpm.d/zz-docker.conf
+RUN sed -i '/^\[www\]/a pm.status_path = /status' /usr/local/etc/php-fpm.d/zz-docker.conf
+
 # Update the variables_order to include E (for ENV)
 #RUN sed -i 's/variables_order = "GPCS"/variables_order = "EGPCS"/' "$PHP_INI_DIR/php.ini"
 
